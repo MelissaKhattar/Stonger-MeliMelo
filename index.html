@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 4-Week Workout Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="app-container">
+        <h1>Workout Progress</h1>
+        <div class="calendar-header">
+            <button id="prevMonth">&lt; Prev</button>
+            <h2 id="currentMonthYear"></h2>
+            <button id="nextMonth">Next &gt;</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid">
+            <div class="day-header">Sun</div>
+            <div class="day-header">Mon</div>
+            <div class="day-header">Tue</div>
+            <div class="day-header">Wed</div>
+            <div class="day-header">Thu</div>
+            <div class="day-header">Fri</div>
+            <div class="day-header">Sat</div>
+            </div>
+
+        <div class="workout-details" id="workoutDetails">
+            <h2>Select a Day</h2>
+            <p>Tap on a date in the calendar to see or start your workout.</p>
+        </div>
+    </div>
+    <div id="workoutSessionContainer" class="container" style="display: none;">
+        <div class="workout-session-header">
+            <button id="backToCalendarBtn">← Back to Calendar</button>
+            <h2 id="sessionWorkoutTitle">Workout Session</h2>
+        </div>
+
+        <div id="currentExerciseDisplay" class="current-exercise-display">
+            <p>Loading exercise...</p>
+        </div>
+
+        <div class="timer-section">
+            <span id="restTimerDisplay">00:00</span>
+            <button id="startTimerBtn">Start Rest Timer (60s)</button>
+        </div>
+
+        <div class="session-navigation-buttons">
+            <button id="prevExerciseBtn" style="display:none;">← Previous Exercise</button>
+            <button id="nextExerciseBtn" style="display:none;">Next Exercise →</button>
+        </div>
+
+        <div class="workout-session-footer">
+            <button id="finishWorkoutBtn">Finish Workout</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

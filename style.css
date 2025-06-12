@@ -1,74 +1,55 @@
 /* General Body and Container Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f4f7f6;
+    padding: 20px;
+    background-color: #f4f4f4;
     color: #333;
     display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align to the top */
-    min-height: 100vh;
-    padding-top: 20px; /* Some space from the top */
-    box-sizing: border-box;
-}
-
-#app-container {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 900px;
-    padding: 25px;
-    box-sizing: border-box;
-    display: flex;
     flex-direction: column;
-    gap: 25px;
+    align-items: center;
+    min-height: 100vh;
 }
 
-/* Header and Navigation */
-.header {
+.container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px; /* Increased max-width for better layout */
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Space between containers if multiple are displayed */
+}
+
+h1, h2 {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Calendar Header */
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    gap: 10px; /* Space between items if they wrap */
+    padding: 0 10px;
 }
 
-.header h1 {
-    margin: 0;
-    color: #2c3e50;
-    font-size: 1.8em;
-    flex-grow: 1; /* Allow title to take available space */
-}
-
-.nav-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.nav-buttons button {
+.calendar-header button {
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 10px 18px;
-    font-size: 1em;
+    padding: 8px 15px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    white-space: nowrap; /* Prevent buttons from breaking words */
+    font-size: 1em;
+    transition: background-color 0.2s ease;
 }
 
-.nav-buttons button:hover {
+.calendar-header button:hover {
     background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-.nav-buttons button:active {
-    transform: translateY(0);
 }
 
 /* Calendar Grid */
@@ -76,595 +57,319 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
-    background-color: #fdfdfd;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: center;
 }
 
 .day-header {
     font-weight: bold;
-    text-align: center;
-    padding: 8px 0;
-    background-color: #e9ecef;
-    border-radius: 6px;
-    color: #555;
-    font-size: 0.95em;
+    background-color: #e2e2e2;
+    padding: 10px 5px;
+    border-radius: 5px;
+    font-size: 0.9em;
 }
 
 .calendar-day {
-    background-color: #f0f4f7;
+    background-color: #f0f0f0;
+    padding: 15px 5px;
     border-radius: 8px;
-    padding: 12px 8px;
-    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
     min-height: 80px; /* Ensure consistent height */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     font-size: 0.9em;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     position: relative; /* For checkmark positioning */
-    user-select: none; /* Prevent text selection on days */
+}
+
+.calendar-day:hover:not(.empty) {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
 }
 
 .calendar-day.empty {
-    background-color: #f7f9fa;
+    background-color: #f8f8f8;
     cursor: default;
-    box-shadow: none;
+    border: 1px dashed #e0e0e0;
 }
 
-.calendar-day:not(.empty):hover {
-    background-color: #e2eaf0;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.calendar-day.current-day {
+    background-color: #cfe2ff;
+    border: 2px solid #007bff;
+    font-weight: bold;
 }
 
-.date-number {
-    font-size: 1.2em;
-    font-weight: 600;
-    color: #444;
-    margin-bottom: 5px;
-}
-
-.workout-title-label {
-    font-size: 0.75em;
-    color: #007bff;
-    font-weight: 500;
-    text-align: center;
-    line-height: 1.2;
-    margin-top: 5px;
-    flex-grow: 1; /* Allow title to take available space */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Day Types and Statuses */
 .calendar-day.has-workout {
-    background-color: #e6f7ff; /* Light blue for workout day */
-    border: 1px solid #b3e0ff;
+    background-color: #d4edda; /* Light green for workout days */
+    border: 1px solid #28a745;
 }
 
 .calendar-day.rest-day {
-    background-color: #eafbea; /* Light green for rest day */
-    border: 1px solid #b0dab7;
-    color: #28a745;
+    background-color: #fff3cd; /* Light yellow for rest days */
+    border: 1px solid #ffc107;
 }
 
-.calendar-day.rest-day .workout-title-label {
-    color: #28a745;
+.calendar-day .date-number {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
 }
 
+.calendar-day .workout-title-label {
+    font-size: 0.75em;
+    color: #555;
+    margin-top: 5px;
+    word-break: break-word; /* Prevents long titles from overflowing */
+    text-align: center;
+}
+
+/* Completed Day Styling */
 .calendar-day.completed {
-    background-color: #d4edda; /* Completed (light green) */
-    border: 1px solid #28a745;
-    color: #155724;
-    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+    background-color: #d1ecf1; /* Light blue/cyan for completed */
+    border: 1px solid #17a2b8;
+    position: relative;
 }
 
 .calendar-day.completed .checkmark {
     position: absolute;
     top: 5px;
     right: 5px;
-    color: #155724; /* Dark green for checkmark */
     font-size: 1.5em;
-    line-height: 1;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
-
-/* Current Day Highlight */
-.calendar-day.current-day {
-    background-color: #fffacd; /* Light yellow for today */
-    border: 2px solid #ffc107; /* Orange border */
+    color: #17a2b8; /* Checkmark color */
     font-weight: bold;
-    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5); /* A vibrant glow */
-    transform: scale(1.02); /* Slightly larger */
-    z-index: 1; /* Ensure it's on top */
 }
 
-/* Adjustments for current day combined with other states */
-.calendar-day.current-day.has-workout {
-    background-color: #ffe08a; /* More intense yellow for workout day today */
-    border-color: #ffa000;
+/* NEW: Style for completed days on the calendar (red as requested) */
+.calendar-day.completed-red {
+    background-color: #ffcccc; /* Light red background */
+    border: 1px solid #ff0000; /* Red border */
+    color: #b30000; /* Darker red text */
 }
 
-.calendar-day.current-day.rest-day {
-    background-color: #dcedc8; /* A pleasant green-yellow for rest day today */
-    border-color: #689f38;
-}
-
-.calendar-day.current-day.completed {
-    background-color: #a7e0a7; /* Deeper green for completed today */
-    border-color: #1a7e32;
+.calendar-day.completed-red .checkmark {
+    color: #ff0000; /* Ensure checkmark is also red */
 }
 
 
 /* Workout Details Section */
 .workout-details {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    margin-top: 20px;
-    min-height: 200px; /* Ensure it doesn't collapse */
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .workout-details h2 {
-    color: #2c3e50;
-    margin-top: 0;
-    font-size: 1.6em;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    font-size: 1.8em;
+    margin-bottom: 20px;
 }
 
 .exercise-list {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .exercise-item {
     display: flex;
     align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
     gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px dashed #eee;
-}
-
-.exercise-item:last-child {
-    border-bottom: none;
 }
 
 .exercise-item img {
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0; /* Prevent image from shrinking too much */
+    border-radius: 4px;
+    flex-shrink: 0; /* Prevent image from shrinking */
 }
 
 .exercise-item-content {
     flex-grow: 1;
 }
 
-.exercise-item-content h3 {
-    margin: 0 0 5px 0;
-    color: #444;
-    font-size: 1.2em;
+.exercise-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
 }
 
-.exercise-item-content p {
-    margin: 0 0 3px 0;
-    color: #666;
+.exercise-item p {
+    margin: 0 0 5px 0;
+    color: #555;
     font-size: 0.9em;
 }
 
 .workout-details button {
-    background-color: #28a745;
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 12px 25px;
+    border-radius: 5px;
     font-size: 1.1em;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    align-self: flex-end; /* Push button to the right */
-    margin-top: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+    margin-top: 20px;
 }
 
 .workout-details button:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
-}
-
-.workout-details button:active {
-    transform: translateY(0);
+    background-color: #0056b3;
 }
 
 .daily-notes-section {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
+    margin-top: 25px;
 }
 
 .daily-notes-section label {
     display: block;
-    font-weight: bold;
     margin-bottom: 8px;
-    color: #555;
+    font-weight: bold;
+    color: #333;
 }
 
 .daily-notes-section textarea {
-    width: calc(100% - 20px); /* Adjust for padding and border */
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.9em;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
     resize: vertical; /* Allow vertical resizing */
-    min-height: 80px;
-    box-sizing: border-box; /* Include padding and border in width */
 }
 
-/* Workout Session View */
+/* New styles for the Workout Session Container */
 #workoutSessionContainer {
-    display: none; /* Hidden by default */
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 700px;
-    padding: 25px;
-    box-sizing: border-box;
-    flex-direction: column; /* Changed to display flex in JS, so keep it here */
-    gap: 20px;
-    min-height: 80vh; /* Take up more vertical space */
-    justify-content: space-between;
-}
-
-#workoutSessionContainer h2 {
-    text-align: center;
-    color: #2c3e50;
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-#currentExerciseDisplay {
-    flex-grow: 1; /* Allows it to take up available space */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    text-align: center;
-}
-
-#currentExerciseDisplay h3 {
-    color: #007bff;
-    font-size: 1.5em;
-    margin-top: 0;
-}
-
-#currentExerciseDisplay img {
-    max-width: 100%;
-    height: auto;
-    max-height: 250px; /* Limit image height */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-#currentExerciseDisplay p {
-    color: #555;
-    line-height: 1.5;
-    max-width: 500px; /* Prevent text from being too wide */
-}
-
-.sets-tracking {
-    margin-top: 20px;
+    padding: 20px;
     background-color: #f9f9f9;
-    border: 1px solid #eee;
     border-radius: 8px;
-    padding: 15px;
-    width: 100%;
-    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 20px;
 }
 
-.sets-tracking h4 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #444;
-    font-size: 1.1em;
-}
-
-.set-row {
+.workout-session-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px dashed #e0e0e0;
+    margin-bottom: 20px;
 }
 
-.set-row:last-child {
-    border-bottom: none;
-}
-
-.set-row label {
-    font-weight: 500;
-    color: #666;
-}
-
-.set-completed-checkbox {
-    width: 20px;
-    height: 20px;
-    accent-color: #28a745; /* Green checkbox */
-    cursor: pointer;
-}
-
-#markExerciseDoneBtn {
-    background-color: #17a2b8; /* Info blue */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#markExerciseDoneBtn:hover {
-    background-color: #138496;
-}
-
-.workout-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-    gap: 10px; /* Space between buttons */
-    flex-wrap: wrap; /* Allow buttons to wrap */
-}
-
-.workout-navigation button {
-    background-color: #6c757d; /* Gray */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 25px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    flex: 1; /* Make buttons take equal space */
-    min-width: 120px; /* Ensure buttons don't get too small */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.workout-navigation button:hover {
-    background-color: #5a6268;
-    transform: translateY(-2px);
-}
-
-.workout-navigation button:active {
-    transform: translateY(0);
-}
-
-.workout-navigation #backToCalendarBtn {
-    background-color: #dc3545; /* Red */
-}
-
-.workout-navigation #backToCalendarBtn:hover {
-    background-color: #c82333;
-}
-
-.workout-navigation #finishWorkoutBtn {
-    background-color: #28a745; /* Green */
-}
-
-.workout-navigation #finishWorkoutBtn:hover {
-    background-color: #218838;
-}
-
-/* Rest Timer */
-.rest-timer {
+.workout-session-header h2 {
+    flex-grow: 1;
     text-align: center;
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #e9f7ef;
-    border: 1px solid #d0ecc1;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    margin: 0;
 }
 
-.rest-timer p {
-    font-size: 1.2em;
-    font-weight: 500;
+/* Styles for the single exercise display */
+.current-exercise-display {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.current-exercise-display h3 {
     color: #333;
+    margin-top: 0;
+}
+
+.current-exercise-display img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.current-exercise-display .sets-tracking {
+    margin-top: 15px;
+}
+
+.current-exercise-display .set-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 10px;
+}
+
+.current-exercise-display .set-row label {
+    font-weight: bold;
+    min-width: 60px; /* Adjust as needed */
+    text-align: right;
+}
+
+.current-exercise-display .reps-input,
+.current-exercise-display .weight-input {
+    width: 80px; /* Adjust size as needed */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Timer Section */
+.timer-section {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 #restTimerDisplay {
     font-size: 2.5em;
     font-weight: bold;
-    color: #007bff;
-    margin-bottom: 15px;
+    color: #007bff; /* Blue color for timer */
+    display: block;
+    margin-bottom: 10px;
 }
 
-.timer-buttons {
+/* Session Navigation Buttons */
+.session-navigation-buttons {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.timer-buttons button {
-    background-color: #ffc107; /* Warning yellow */
-    color: #333;
+/* General button styling for the app */
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
     border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 1em;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    transition: background-color 0.2s ease;
 }
 
-.timer-buttons button:hover {
-    background-color: #e0a800;
+button:hover {
+    background-color: #0056b3;
 }
 
+button#backToCalendarBtn {
+    background-color: #6c757d; /* Grey for back button */
+}
 
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-        /* Adjust alignment for smaller screens if app-container is too wide */
-        align-items: stretch;
-    }
+button#backToCalendarBtn:hover {
+    background-color: #5a6268;
+}
 
-    #app-container, #workoutSessionContainer {
-        padding: 15px;
-        border-radius: 8px;
-        max-width: 100%; /* Ensure it takes full width */
-    }
+button#finishWorkoutBtn {
+    background-color: #28a745; /* Green for finish button */
+    display: block; /* Make it block to take full width or center */
+    margin: 20px auto 0 auto; /* Center it */
+    width: 80%; /* Adjust width as needed */
+    max-width: 300px;
+}
 
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header h1 {
-        font-size: 1.5em;
-        width: 100%; /* Take full width */
-        text-align: center; /* Center title */
-    }
-
-    .nav-buttons {
-        width: 100%;
-        justify-content: space-around; /* Distribute buttons */
-    }
-
-    .nav-buttons button {
-        padding: 8px 12px;
-        font-size: 0.9em;
-        flex-grow: 1; /* Make buttons expand */
-    }
-
-    .calendar-grid {
-        gap: 5px;
-        padding: 10px;
-    }
-
-    .day-header {
-        font-size: 0.85em;
-        padding: 6px 0;
-    }
-
-    .calendar-day {
-        min-height: 60px;
-        padding: 8px 4px;
-        font-size: 0.8em;
-    }
-
-    .date-number {
-        font-size: 1em;
-    }
-
-    .workout-title-label {
-        font-size: 0.65em;
-    }
-
-    .calendar-day.completed .checkmark {
-        font-size: 1.2em;
-        top: 3px;
-        right: 3px;
-    }
-
-    .workout-details h2 {
-        font-size: 1.4em;
-    }
-
-    .exercise-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 10px;
-    }
-
-    .exercise-item img {
-        width: 60px;
-        height: 60px;
-    }
-
-    .exercise-item-content h3 {
-        font-size: 1.1em;
-    }
-
-    .exercise-item-content p {
-        font-size: 0.85em;
-    }
-
-    .workout-details button {
-        padding: 10px 20px;
-        font-size: 1em;
-        width: 100%; /* Make button full width */
-    }
-
-    .daily-notes-section textarea {
-        min-height: 60px;
-    }
-
-    #workoutSessionContainer h2 {
-        font-size: 1.5em;
-    }
-
-    #currentExerciseDisplay h3 {
-        font-size: 1.3em;
-    }
-
-    #currentExerciseDisplay img {
-        max-height: 180px;
-    }
-
-    .sets-tracking {
-        padding: 10px;
-    }
-
-    .sets-tracking h4 {
-        font-size: 1em;
-    }
-
-    .set-row label {
-        font-size: 0.9em;
-    }
-
-    .workout-navigation {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .workout-navigation button {
-        width: 100%;
-        padding: 10px;
-    }
-
-    #restTimerDisplay {
-        font-size: 2em;
-    }
-
-    .timer-buttons button {
-        padding: 8px 15px;
-        font-size: 0.9em;
-    }
+button#finishWorkoutBtn:hover {
+    background-color: #218838;
 }

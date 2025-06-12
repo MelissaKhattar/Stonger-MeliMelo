@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const restDate3_1 = new Date(startDate);
                     restDate3_1.setDate(startDate.getDate() + i - 1);
                     workoutSchedule.push({
-                        date: `${restDate3_1.getFullYear()}-${String(restDate3_1.getMonth() + 1).padStart(2, '0')}-${String(restDate3_1.getDate()).padStart(2, '0')}`, // Corrected: changed 'rest3_1' to 'restDate3_1'
+                        date: `${restDate3_1.getFullYear()}-${String(restDate3_1.getMonth() + 1).padStart(2, '0')}-${String(restDate3_1.getDate()).padStart(2, '0')}`, // THIS LINE IS CORRECTED
                         type: 'rest',
                         plan: {
                             title: activeRecoveryTitle,

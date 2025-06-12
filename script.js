@@ -147,6 +147,44 @@ document.addEventListener('DOMContentLoaded', () => {
                     { name: 'Side Plank', sets: '3', reps: 'Max Hold', description: 'Push for your maximum hold time per side.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/side-plank.png' }
                 ]
             }
+        },
+        'Week 4': {
+            'Day 1': {
+                title: 'Week 4: Full Body (Deload or Maintain)',
+                exercises: [
+                    { name: 'Leg Press Machine', sets: '3', reps: '10-12', description: 'Maintain or slightly reduce weight for recovery.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/leg-press.png' },
+                    { name: 'Seated Cable Row', sets: '3', reps: '10-12', description: 'Maintain or slightly reduce weight. (Shoulder Caution)', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/seated-cable-row.png' },
+                    { name: 'Machine Chest Press', sets: '3', reps: '10-12', description: 'Maintain or slightly reduce weight. (Shoulder Caution)', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/machine-chest-press.png' },
+                    { name: 'Hamstring Curl Machine', sets: '3', reps: '12-15', description: 'Focus on perfect form.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/hamstring-curl.png' },
+                    { name: 'Leg Extension Machine', sets: '3', reps: '12-15', description: 'Focus: controlled extension, slight pause at top.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/leg-extension.png' },
+                    { name: 'Face Pulls (Cable Machine)', sets: '3', reps: '15-20', description: 'Excellent for active recovery and posture.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/face-pull.png' },
+                    { name: 'Plank', sets: '3', reps: '30-45 sec', description: 'Focus on stability.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/plank.png' }
+                ]
+            },
+            'Day 2': {
+                title: 'Week 4: Upper Body & Core (Deload or Maintain)',
+                exercises: [
+                    { name: 'Lat Pulldown Machine', sets: '3', reps: '10-12', description: 'Maintain or slightly reduce weight.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/lat-pulldown.png' },
+                    { name: 'Machine Incline Chest Press', sets: '3', reps: '10-12', description: 'Maintain or slightly reduce weight. (Shoulder Caution)', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/incline-press.png' },
+                    { name: 'Machine Reverse Fly (Rear Delt Machine)', sets: '3', reps: '15-20', description: 'Focus on form.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/reverse-fly.png' },
+                    { name: 'Single Arm Cable Row (Seated)', sets: '3', reps: '10-12 per arm', description: 'Focus on form. (Shoulder Caution)', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/single-arm-cable-row.png' },
+                    { name: 'Machine Lateral Raises (Very Light Weight)', sets: '3', reps: '15-20', description: 'Focus on form. (Shoulder Caution)', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/lateral-raise.png' },
+                    { name: 'Cable Crunches', sets: '3', reps: '15-20', description: 'Focus on controlled movement.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/cable-crunch.png' },
+                    { name: 'Bird-Dog', sets: '3', reps: '10-12 per side', description: 'Slow and controlled.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/bird-dog.png' }
+                ]
+            },
+            'Day 3': {
+                title: 'Week 4: Lower Body, Posterior Chain & Posture (Deload or Maintain)',
+                exercises: [
+                    { name: 'Goblet Squat (with dumbbell) or Hack Squat Machine', sets: '3', reps: '10-12', description: 'Maintain or slightly reduce weight.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/goblet-squat.png' },
+                    { name: 'Glute Bridge (bodyweight or with plate on hips)', sets: '3', reps: '12-15', description: 'Focus on perfect form.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/glute-bridge.png' },
+                    { name: 'Assisted Pull-up Machine (or Lat Pulldown if no machine)', sets: '3', reps: '8-12', description: 'Maintain or slightly reduce weight. (Shoulder Caution)', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/assisted-pull-up.png' },
+                    { name: 'Seated Calf Raise Machine', sets: '3', reps: '15-20', description: 'Focus on full range.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/seated-calf-raise.png' },
+                    { name: 'Hyperextension / Back Extension (Machine or Bench)', sets: '3', reps: '10-15', description: 'Focus on controlled movement.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/hyperextension.png' },
+                    { name: 'Wall Angels', sets: '3', reps: '10-15', description: 'Maintain strict form.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/wall-angel.png' },
+                    { name: 'Side Plank', sets: '3', reps: '30-45 sec per side', description: 'Focus on stability.', img: 'https://cdn.jsdelivr.net/gh/schuylerf/workout-tracker-images@main/side-plank.png' }
+                ]
+            }
         }
     };
 
@@ -247,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const restDate3_1 = new Date(startDate);
                     restDate3_1.setDate(startDate.getDate() + i - 1);
                     workoutSchedule.push({
-                        date: `${restDate3_1.getFullYear()}-${String(restDate3_1.getMonth() + 1).padStart(2, '0')}-${String(rest3_1.getDate()).padStart(2, '0')}`,
+                        date: `${restDate3_1.getFullYear()}-${String(restDate3_1.getMonth() + 1).padStart(2, '0')}-${String(restDate3_1.getDate()).padStart(2, '0')}`,
                         type: 'rest',
                         plan: {
                             title: activeRecoveryTitle,
@@ -657,27 +695,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initialization on Page Load ---
     // This runs when the HTML content is fully loaded
+    let initialStartDate = new Date();
+    // No change: initialStartDate = new Date(); // Set to current day
 
-    // New logic to handle program start date
-    let programStartDate;
-    const savedProgramStartDate = localStorage.getItem('programStartDate');
-
-    if (savedProgramStartDate) {
-        programStartDate = new Date(savedProgramStartDate);
-        console.log('Workout program started on (loaded):', programStartDate.toISOString().split('T')[0]);
-    } else {
-        // If no start date is saved, set it to yesterday and save it
-        programStartDate = new Date(); // Start with today's date
-        programStartDate.setDate(programStartDate.getDate() - 1); // Subtract 1 day to make it yesterday
-
-        localStorage.setItem('programStartDate', programStartDate.toISOString().split('T')[0]); // Save as YYYY-MM-DD
-        console.log('Workout program started on (newly set to yesterday):', programStartDate.toISOString().split('T')[0]);
-    }
-
-    populateWorkoutSchedule(programStartDate); // Generate the full 4-week schedule based on the persistent start date
+    populateWorkoutSchedule(initialStartDate); // Generate the full 4-week schedule
     loadProgress(); // Load any saved completion/notes from localStorage
     showCalendarView(); // Start by showing the calendar view
     updateWorkoutDetails(
-        `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`
-    ); // Show details for today's date initially (or the first day of the plan if today is earlier)
+        `${initialStartDate.getFullYear()}-${String(initialStartDate.getMonth() + 1).padStart(2, '0')}-${String(initialStartDate.getDate()).padStart(2, '0')}`
+    ); // Show details for the first day of the plan initially
 });

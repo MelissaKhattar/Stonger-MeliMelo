@@ -695,13 +695,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initialization on Page Load ---
     // This runs when the HTML content is fully loaded
-    let initialStartDate = new Date();
-    // No change: initialStartDate = new Date(); // Set to current day
 
-    populateWorkoutSchedule(initialStartDate); // Generate the full 4-week schedule
+    // New logic to handle program start date
+    let programStartDate;
+    const savedProgramStartDate = localStorage.getItem('programStartDate');
+
+    if (savedProgramStartDate) {
+        programStartDate = new Date(savedProgramStartDate);
+    } else {
+        // If no start date is saved, set it to today and save it
+        programStartDate = new Date();
+        localStorage.setItem('programStartDate', programStartDate.toISOString().split('T')[0]); // Save as YYYY-MM-DD
+    }
+
+    populateWorkoutSchedule(programStartDate); // Generate the full 4-week schedule based on the persistent start date
     loadProgress(); // Load any saved completion/notes from localStorage
     showCalendarView(); // Start by showing the calendar view
     updateWorkoutDetails(
-        `${initialStartDate.getFullYear()}-${String(initialStartDate.getMonth() + 1).padStart(2, '0')}-${String(initialStartDate.getDate()).padStart(2, '0')}`
-    ); // Show details for the first day of the plan initially
+        `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`
+    ); // Show details for today's date initially (or the first day of the plan if today is earlier)
 });

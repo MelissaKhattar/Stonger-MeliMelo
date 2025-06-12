@@ -34,12 +34,20 @@ body {
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px; /* Space between items if they wrap */
 }
 
 .header h1 {
     margin: 0;
     color: #2c3e50;
     font-size: 1.8em;
+    flex-grow: 1; /* Allow title to take available space */
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
 }
 
 .nav-buttons button {
@@ -51,7 +59,7 @@ body {
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 0 5px;
+    white-space: nowrap; /* Prevent buttons from breaking words */
 }
 
 .nav-buttons button:hover {
@@ -99,18 +107,19 @@ body {
     transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     position: relative; /* For checkmark positioning */
-}
-
-.calendar-day:not(.empty):hover {
-    background-color: #e2eaf0;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    user-select: none; /* Prevent text selection on days */
 }
 
 .calendar-day.empty {
     background-color: #f7f9fa;
     cursor: default;
     box-shadow: none;
+}
+
+.calendar-day:not(.empty):hover {
+    background-color: #e2eaf0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .date-number {
@@ -163,6 +172,7 @@ body {
     color: #155724; /* Dark green for checkmark */
     font-size: 1.5em;
     line-height: 1;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 /* Current Day Highlight */
@@ -172,6 +182,7 @@ body {
     font-weight: bold;
     box-shadow: 0 0 10px rgba(255, 193, 7, 0.5); /* A vibrant glow */
     transform: scale(1.02); /* Slightly larger */
+    z-index: 1; /* Ensure it's on top */
 }
 
 /* Adjustments for current day combined with other states */
@@ -236,6 +247,11 @@ body {
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* Prevent image from shrinking too much */
+}
+
+.exercise-item-content {
+    flex-grow: 1;
 }
 
 .exercise-item-content h3 {
@@ -261,11 +277,16 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
     align-self: flex-end; /* Push button to the right */
     margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .workout-details button:hover {
     background-color: #218838;
     transform: translateY(-2px);
+}
+
+.workout-details button:active {
+    transform: translateY(0);
 }
 
 .daily-notes-section {
@@ -282,7 +303,7 @@ body {
 }
 
 .daily-notes-section textarea {
-    width: calc(100% - 20px); /* Adjust for padding */
+    width: calc(100% - 20px); /* Adjust for padding and border */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -290,6 +311,7 @@ body {
     font-size: 0.9em;
     resize: vertical; /* Allow vertical resizing */
     min-height: 80px;
+    box-sizing: border-box; /* Include padding and border in width */
 }
 
 /* Workout Session View */
@@ -302,8 +324,7 @@ body {
     max-width: 700px;
     padding: 25px;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Changed to display flex in JS, so keep it here */
     gap: 20px;
     min-height: 80vh; /* Take up more vertical space */
     justify-content: space-between;
@@ -398,6 +419,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #markExerciseDoneBtn:hover {
@@ -412,6 +434,7 @@ body {
     padding-top: 15px;
     border-top: 1px solid #eee;
     gap: 10px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap */
 }
 
 .workout-navigation button {
@@ -424,6 +447,8 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     flex: 1; /* Make buttons take equal space */
+    min-width: 120px; /* Ensure buttons don't get too small */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .workout-navigation button:hover {
@@ -476,6 +501,13 @@ body {
     margin-bottom: 15px;
 }
 
+.timer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
 .timer-buttons button {
     background-color: #ffc107; /* Warning yellow */
     color: #333;
@@ -485,7 +517,7 @@ body {
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin: 0 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .timer-buttons button:hover {
@@ -497,20 +529,36 @@ body {
 @media (max-width: 768px) {
     body {
         padding: 10px;
+        /* Adjust alignment for smaller screens if app-container is too wide */
+        align-items: stretch;
     }
 
     #app-container, #workoutSessionContainer {
         padding: 15px;
         border-radius: 8px;
+        max-width: 100%; /* Ensure it takes full width */
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .header h1 {
         font-size: 1.5em;
+        width: 100%; /* Take full width */
+        text-align: center; /* Center title */
+    }
+
+    .nav-buttons {
+        width: 100%;
+        justify-content: space-around; /* Distribute buttons */
     }
 
     .nav-buttons button {
         padding: 8px 12px;
         font-size: 0.9em;
+        flex-grow: 1; /* Make buttons expand */
     }
 
     .calendar-grid {
@@ -570,6 +618,7 @@ body {
     .workout-details button {
         padding: 10px 20px;
         font-size: 1em;
+        width: 100%; /* Make button full width */
     }
 
     .daily-notes-section textarea {
